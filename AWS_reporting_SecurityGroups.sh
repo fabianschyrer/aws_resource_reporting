@@ -17,7 +17,7 @@
 PROFILE=OpsAdmin													# IAM Role (must match IAM role name, specified in ~/.aws/config)
 OUTPUT_FORMAT=json													# text, table, json
 REPORT_NAME=AWS_reporting_SecurityGroups 							# Name of the Report
-OUTPUT_DIR=~/Downloads/aws_reporting_scripts/AWS_Reports			# Output Directory
+OUTPUT_DIR=./AWS_Reports											# Output Directory
 #REGION=ap-southeast-1												# region or loop though all regions (uncomment below)
 
 
