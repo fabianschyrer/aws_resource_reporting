@@ -26,7 +26,8 @@ COST_REPORT_STOP=$(date +%Y-%m-%d)									# Cost and Usage Report Stop Day, e.g
 COST_REPORT_START=2018-08-01										# Cost and Usage Report Start Day, e.g. last month (including)
 COST_REPORT_DIMENSION=REGION										# e.g. AZ, INSTANCE_TYPE, LINKED_ACCOUNT, OPERATION, PURCHASE_TYPE, REGION, SERVICE, USAGE_TYPE, USAGE_TYPE_GROUP, RECORD_TYPE, OPERATING_SYSTEM, TENANCY, SCOPE, PLATFORM, SUBSCRIPTION_ID, LEGAL_ENTITY_NAME, DEPLOYMENT_OPTION, DATABASE_ENGINE, CACHE_ENGINE, INSTANCE_TYPE_FAMILY
 COST_REPORT_GRANULARITY=DAILY 										# e.g. DAILY, WEEKLY, MONTHLY
-COST_REPORT_METRICS=UsageQuantity 										# e.g. BlendedCost, UnblendedCost, UsageQuantity, NormalizedUsageAmount, AmortizedCost, NetUnblendedCost
+COST_REPORT_METRICS=UsageQuantity 									# e.g. BlendedCost, UnblendedCost, UsageQuantity, NormalizedUsageAmount, AmortizedCost, NetUnblendedCost
+ORGANIZATIONS_ACCOUT_ID=1234567890 									# AWS organization Account ID
 
 ####### EC2 and Base Infrastructure Resources
 
@@ -417,6 +418,10 @@ echo
 echo -e "\n ***** Listing Cost Explorer Tags in region:'$REGION'..."
 aws ce get-tags --region $REGION --profile $PROFILE --time-period Start=$COST_REPORT_START,End=$COST_REPORT_STOP --output=$OUTPUT_FORMAT > ${REPORT_NAME}.CostExplorer.Tags.${PROFILE}.${REGION}.${OUTPUT_FORMAT}
 echo
+
+####### AWS organizations
+
+aws organizations describe-account --account-id $ORGANIZATIONS_ACCOUT_ID --output=$OUTPUT_FORMAT > ${REPORT_NAME}.AWSorganizations.${ORGANIZATIONS_ACCOUT_ID}.${PROFILE}.${REGION}.${OUTPUT_FORMAT}
 
 ####### Organize Output
 
